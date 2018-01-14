@@ -32,6 +32,7 @@
 		34BDEB64200AC35A00916A88 /* ApiService+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB63200AC35A00916A88 /* ApiService+Events.swift */; };
 		34BDEB67200AC56400916A88 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB66200AC56400916A88 /* OnboardingViewController.swift */; };
 		34BDEB6B200B03DA00916A88 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB6A200B03DA00916A88 /* EventDetailsViewController.swift */; };
+		34BDEB6D200B121500916A88 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB6C200B121500916A88 /* Person.swift */; };
 		34C55E872008C8960056AC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C55E862008C8960056AC2E /* AppDelegate.swift */; };
 		34C55E892008C8960056AC2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C55E882008C8960056AC2E /* ViewController.swift */; };
 		34C55E8E2008C8960056AC2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C55E8D2008C8960056AC2E /* Assets.xcassets */; };
@@ -115,6 +116,7 @@
 		34BDEB63200AC35A00916A88 /* ApiService+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApiService+Events.swift"; sourceTree = "<group>"; };
 		34BDEB66200AC56400916A88 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		34BDEB6A200B03DA00916A88 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		34BDEB6C200B121500916A88 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		34C55E832008C8950056AC2E /* AngryStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AngryStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C55E862008C8960056AC2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C55E882008C8960056AC2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			children = (
 				9EF3D82E200A6CB000DCE9A2 /* Event.swift */,
 				9EF3D85C200ACD3600DCE9A2 /* Friend.swift */,
+				34BDEB6C200B121500916A88 /* Person.swift */,
 				34BDEB5D200ABFCA00916A88 /* IndoorwayMapDescription+Floor.swift */,
 				34BDEB5E200ABFCA00916A88 /* IndoorwayObjectInfo+Room.swift */,
 			);
@@ -913,6 +916,7 @@
 				9EF3D857200ACCFC00DCE9A2 /* FriendsViewController.swift in Sources */,
 				34B492C0200A30F8000C5945 /* UIColor+AppColor.swift in Sources */,
 				3466E7162008D5E200ACEF27 /* R_extensions.swift in Sources */,
+				34BDEB6D200B121500916A88 /* Person.swift in Sources */,
 				9EF3D83A200A7B5900DCE9A2 /* EventViewModel.swift in Sources */,
 				34C55E872008C8960056AC2E /* AppDelegate.swift in Sources */,
 			);

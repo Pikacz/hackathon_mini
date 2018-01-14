@@ -102,7 +102,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   
   var showsUserLocation: Bool = true
   
-  var isSelectagle: Bool = true
+  
   
   
   override func initialize() {
@@ -169,7 +169,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
     
     map.removeAnnotations(toRemove)
     map.addAnnotations(toAdd)
-
+    
     
     
   }
@@ -185,7 +185,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
       mapUuid: IndoorwayMapDescription.getFloorId(fromObjId: objId)
     )
     showsUserLocation = false
-    isSelectagle = false
+    isUserInteractionEnabled = false
     load(with: desc) {
       (succeed: Bool) in
       
@@ -235,19 +235,19 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   
   
   @objc func mapView(_ mapView: IndoorwayMapView, shouldSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) -> Bool {
-    return isSelectagle && indoorObjectInfo.isRoom
+    return indoorObjectInfo.isRoom
   }
   
   
   @objc func mapView(_ mapView: IndoorwayMapView, didSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) {
-    if isSelectagle {
-      delegate?.eventsMapView(didSelect: self, object: indoorObjectInfo)
-      mapView.deselectObject()
-    }
+    
+    delegate?.eventsMapView(didSelect: self, object: indoorObjectInfo)
+    mapView.deselectObject()
+    
   }
   
   
-
+  
   @objc func mapView(_ mapView: IndoorwayMapView, viewForAnnotation annotation: IndoorwayAnnotation) -> IndoorwayAnnotationView? {
     var view: IndoorwayAnnotationView? = nil
     

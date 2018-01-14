@@ -107,8 +107,8 @@ class ApiService {
     return Promise(error: error)
   }
   
-
-
+  
+  
   
   
   /// makes request to server
@@ -132,7 +132,7 @@ class ApiService {
     parameters: [String: Any]?,
     expectedCodes: Set<Int>,
     contentTypes: Set<String>? = nil,
-//    authenticationRequired: Bool = true,
+    //    authenticationRequired: Bool = true,
     retryLimit: Int = ApiService.RETRY_LIMIT,
     additionalHeaders: [String: String] = [:],
     parser: @escaping (_ dataString: String, _ statusCode: Int) throws -> T
@@ -143,7 +143,7 @@ class ApiService {
       parameters: parameters,
       expectedCodes: expectedCodes,
       contentTypes: contentTypes,
-//      authenticationRequired: authenticationRequired,
+      //      authenticationRequired: authenticationRequired,
       retryLimit: retryLimit,
       additionalHeaders: additionalHeaders
       ).then {
@@ -159,7 +159,7 @@ class ApiService {
     parameters: [String: Any]?,
     expectedCodes: Set<Int>,
     contentTypes: Set<String>?,
-//    authenticationRequired: Bool,
+    //    authenticationRequired: Bool,
     retryLimit: Int,
     error: Error? = nil,
     additionalHeaders: [String: String]
@@ -186,7 +186,7 @@ class ApiService {
       headers: headers
     )
     
-  
+    
     dataRequest = dataRequest
       .validate(statusCode: expectedCodes)
     

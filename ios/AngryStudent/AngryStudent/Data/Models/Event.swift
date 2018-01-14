@@ -22,6 +22,7 @@ class Event: Mappable {
     public private(set) var iconName: String?
     public private(set) var yes: Int?
     public private(set) var no: Int?
+    public private(set) var guests: [String]?
   
   var icon: UIImage? {
     guard let iconName: String = iconName else { return nil }
@@ -49,5 +50,9 @@ class Event: Mappable {
         iconName           <- map["icon"]
         yes                <- map["yes"]
         no                 <- map["no"]
+      guests               <- map["guests-id"]
+      
+      
+      
     }
 }

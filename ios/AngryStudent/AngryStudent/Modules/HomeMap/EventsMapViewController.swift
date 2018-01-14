@@ -114,6 +114,8 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
           self.ownerView.alpha = 1.0
         }
         print("jestem ownerem")
+      } else {
+        
       }
     } else {
       performSegue(withIdentifier: createEventSegue, sender: object)

@@ -63,7 +63,7 @@ class CreateEventViewController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      print("KUPA: \(room.roomName)")
+      
       print(R.string.create_event_title^)
         navTitle = R.string.create_event_title[room.roomName!]
     }
