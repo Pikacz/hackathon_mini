@@ -27,7 +27,7 @@ class OwnerVotesViewModel {
     // MARK: - Helpers
     
     private func getEvents() {
-      //  groupEvent.value =
+      
     }
     
 }

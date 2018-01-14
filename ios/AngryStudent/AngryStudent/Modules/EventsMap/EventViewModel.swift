@@ -15,26 +15,31 @@ class EventViewModel {
     // MARK: - Properties
     
     public let events: Variable<[(header: String, [Event])]> = Variable([])
+    private var timer: Timer!
     
     // MARK: - Initialization
-    
-    init() {
-        getEvents()
-    }
     
     // MARK: - Actions
     
     func openOwnerEventInfo() {
         
     }
-
+    
     func openParticipateEventInfo() {
         
     }
     
+    public func startGettingEvents() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getEvents), userInfo: nil, repeats: true)
+    }
+    
+    public func stopGettingEvents() {
+        timer.invalidate()
+    }
+    
     // MARK: - Helpers
     
-    private func getEvents() {
+    @objc private func getEvents() {
         ApiService.defaultInstance.getEvents().then { [weak self](events) -> Void in
             self?.handleEvents(events: events)
         }
@@ -60,21 +65,4 @@ class EventViewModel {
             self.events.value.append((headerParticipating, participating))
         }
     }
-    
-//    private func getEvents() {
-//        let headerOwning = "Owning"
-//        let headerParticipating = "Participating"
-//        let owning: [Event] = []
-//        let participating: [Event] = []
-//
-////        let owning = [Event(name: "HEHEHEHEHEHEH", num: 2, iconName: "Book", des: "sadfsadf"),
-////                                   Event(name: "huashduhasu", num: 2, iconName: "Book", des: "sadfsadfasfd"),
-////                                   Event(name: "hsadufh", num: 2, iconName: "Book", des: "")]
-////
-////        let participating = [Event(name: "HEHEHEHEHEHEH", num: 2, iconName: "Book", des: "sadfsadf"),
-////                                        Event(name: "huashduhasu", num: 2, iconName: "Book", des: "sadfsadfasfd"),
-////                                        Event(name: "hsadufh", num: 2, iconName: "Book", des: "")]
-//        events.value = [(headerOwning, owning), (headerParticipating, participating)]
-//    }
-    
 }

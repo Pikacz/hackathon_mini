@@ -157,12 +157,13 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     // MARK: - UI
     
     private func removeOwnerView() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.ownerView.alpha = 0
-        }
+      //  UIView.animate(withDuration: 0.5) { [weak self] in
+            self.ownerView.alpha = 0
+       // }
     }
     
-    private func addOwnerView() {
+    private func addOwnerView(for id: String) {
+        
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.ownerView.alpha = 1
         }
@@ -206,9 +207,9 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     // MARK: - UI
     
     private func removeParticipateView() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.participateView.alpha = 0
-        }
+       // UIView.animate(withDuration: 0.5) { [weak self] in
+            self.participateView.alpha = 0
+       // }
     }
     
     private func addParticipateView() {

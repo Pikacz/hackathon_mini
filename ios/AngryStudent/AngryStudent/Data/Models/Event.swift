@@ -24,7 +24,6 @@ class Event: Mappable {
     public private(set) var id: Int?
     public private(set) var name: String?
     public private(set) var description: String?
-    public private(set) var viewersNum: Int?
     public private(set) var ownerId: String?
     public private(set) var idnoorRoomId: String?
     public private(set) var iconName: String?
@@ -33,7 +32,6 @@ class Event: Mappable {
     
     public init(name: String, num: Int, iconName: String, des: String?) {
         self.name = name
-        self.viewersNum = num
         self.iconName = iconName
         self.description = des
     }
@@ -44,10 +42,9 @@ class Event: Mappable {
         id                 <- map["id"]
         name               <- map["name"]
         description        <- map["desc"]
-        viewersNum         <- map["icon"]
         ownerId            <- map["owner-id"]
         idnoorRoomId       <- map["room-id"]
-        iconName           <- map["data"]
+        iconName           <- map["icon"]
         yes                <- map["yes"]
         no                 <- map["no"]
     }

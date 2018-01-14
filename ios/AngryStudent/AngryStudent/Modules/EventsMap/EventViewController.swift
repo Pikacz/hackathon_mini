@@ -53,6 +53,16 @@ class EventViewController: BasicViewController {
         bindTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.startGettingEvents()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.stopGettingEvents()
+    }
+    
     // MARK: - Binding
     
     private func bindTableView() {

@@ -62,7 +62,33 @@ extension ApiService {
             return events?.events ?? []
         })
     }
+    
+    func sendVote(vote: Bool, eventID: String) -> Promise<Void> {
+        let voteBool = vote ? 1 : 0
+    let url = "\(baseUrl)/user/vote?user-id=\(userId)&value=\(voteBool)&event-id=\(eventID)"
+        print("😁 \(url)")
+        return request(url: url,
+                       method: HTTPMethod.get,
+                       parameters: nil,
+                       expectedCodes: [200],
+                       parser: { (json, code) -> Void in
+                        print(json)
+                        return
+        })
+    }
   
+    func join(eventID: String) -> Promise<Void> {
+        let url = "\(baseUrl)/user/join?user-id=\(userId)&event-id=\(eventID)"
+        print("😁 \(url)")
+        return request(url: url,
+                       method: HTTPMethod.get,
+                       parameters: nil,
+                       expectedCodes: [200],
+                       parser: { (json, code) -> Void in
+                        print(json)
+                        return
+        })
+    }
   
   func statrtSpammingLocation() {
     spamLocationListener = LocationsListener()
