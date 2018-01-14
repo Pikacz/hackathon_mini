@@ -48,8 +48,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     
     navTitle = R.string.main_map_title["MiNI - 2nd floor"]
     view.backgroundColor = Color.white
-    setupParticipateView()
-    addParticipateView()
+    
   }
   
   
@@ -65,26 +64,12 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
   }
   
   
-  private var x: IndoorwayLocation? {
-    didSet {
-      if oldValue == nil && x != nil {
-        eventsMapView!.chuj(x!)
-      }
-    }
-  }
+  
   
   // MARK: EventsMapViewDelegate
-  func eventsMapView(mapDidLoad view: EventsMapView) {
-    
-  }
-  func eventsMapView(failedLoad view: EventsMapView, with error: Error) {
-    
-  }
+  func eventsMapView(mapDidLoad view: EventsMapView) {}
+  func eventsMapView(failedLoad view: EventsMapView, with error: Error) {}
   
-  
-  func eventsMapView(didSelect view: EventsMapView, location: IndoorwayLatLon) {
-    showOkAlert(title: "\(location.latitude) \(location.longitude)", message: nil)
-  }
   
   func eventsMapView(didSelect view: EventsMapView, object: IndoorwayObjectInfo) {
     performSegue(withIdentifier: createEventSegue, sender: object)
@@ -92,8 +77,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
   
   // MARK: IndoorwayPositionListener
   func positionChanged(position: IndoorwayLocation) {
-    
-    x = position
+    // needed for IndoorwayLocationSdk.instance().map.onChange to work :P
   }
 
   // MARK: IndoorwayMapListener

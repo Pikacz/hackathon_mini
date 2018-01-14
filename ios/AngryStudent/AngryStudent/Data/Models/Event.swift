@@ -1,13 +1,6 @@
-//
-//  Event.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import ObjectMapper
+import UIKit
 
 class EventsData: Mappable {
     public private(set) var events: [Event]?
@@ -29,6 +22,12 @@ class Event: Mappable {
     public private(set) var iconName: String?
     public private(set) var yes: Int?
     public private(set) var no: Int?
+  
+  var icon: UIImage? {
+    guard let iconName: String = iconName else { return nil }
+    return UIImage(named: iconName)
+  }
+  
     
     public init(name: String, num: Int, iconName: String, des: String?) {
         self.name = name
