@@ -140,8 +140,12 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     // MARK: private
     @objc private func download() {
         _ = ApiService.defaultInstance.getEvents().then {
-            (events: [Event]) -> Void in
-            self.update(events: events)
+            [weak self] (events: [Event]) -> Void in
+            if events.isEmpty {
+                self?.removeOwnerView()
+                self?.removeParticipateView()
+            }
+            self?.update(events: events)
         }
     }
     
