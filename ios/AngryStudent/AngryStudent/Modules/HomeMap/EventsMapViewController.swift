@@ -114,8 +114,18 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
           self.ownerView.alpha = 1.0
         }
         print("jestem ownerem")
+      } else if event.imParticipate {
+        print("pokaz participate")
       } else {
+        guard let eventID: Int = event.id else { return }
+        isLoading = true
         
+        ApiService.defaultInstance.join(eventID: "\(eventID)").then {
+          () -> Void in
+          print("pokaz participate")
+        }.always {
+          self.isLoading = false
+        }
       }
     } else {
       performSegue(withIdentifier: createEventSegue, sender: object)
