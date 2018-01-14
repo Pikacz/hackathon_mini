@@ -18,20 +18,16 @@ class ParticipaterVotesViewModel {
     
     // MARK: - Initialization
     
-    init() {
-        getEvent()
-    }
-    
     // MARK: - Actions
     
     func vote(postivie: Bool) {
-        print("Voted: \(postivie)")
+        _ = ApiService.defaultInstance.sendVote(vote: postivie, eventID: (event.value?.idnoorRoomId)!)
     }
     
     // MARK: - Helpers
     
-    private func getEvent() {
-        event.value = Event(name: "KEKEKAK", num: 20, iconName: "Book", des: "asdadsad")
+    func set(event: Event) {
+        self.event.value = event
     }
     
 }

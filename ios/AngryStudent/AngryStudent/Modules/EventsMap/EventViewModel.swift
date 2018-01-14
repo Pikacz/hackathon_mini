@@ -47,7 +47,7 @@ class EventViewModel {
     
     private func handleEvents(events: [Event]) {
         let headerOwning = "Owning"
-        let headerParticipating = "Participating"
+        let headerParticipating = "Other events"
         var owning: [Event] = []
         var participating: [Event] = []
         for event in events {
