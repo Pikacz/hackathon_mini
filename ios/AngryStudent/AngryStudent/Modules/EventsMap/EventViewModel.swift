@@ -29,6 +29,10 @@ class EventViewModel {
         
     }
     
+    func deleteEvent() {
+        _ = ApiService.defaultInstance.abandon()
+    }
+    
     public func startGettingEvents() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getEvents), userInfo: nil, repeats: true)
     }

@@ -95,9 +95,19 @@ class  ParticipaterVotesView: BasicView  {
     
     func setup(model: Event) {
         if let iconName = model.iconName {
-            evnetImageView.image = UIImage(named: iconName)
+            evnetImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
         }
         desLabel.text = model.name
+    }
+    
+    func setup(vote: Bool?) {
+        guard let vote = vote else {
+            yupButton.tintColor = Color.grayDark
+            nupButton.tintColor = Color.grayDark
+            return
+        }
+        yupButton.tintColor = vote ? Color.green : Color.grayDark
+        nupButton.tintColor = !vote ? Color.red : Color.grayDark
     }
     
     // MARK: - Setup
