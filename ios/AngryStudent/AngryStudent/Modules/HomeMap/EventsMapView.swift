@@ -104,7 +104,6 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   
   var isSelectagle: Bool = true
   
-  
   override func initialize() {
     super.initialize()
     
@@ -132,16 +131,17 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
     mapNotLoadedView.frame = map.frame
   }
   
-  
+
   func show(events: [Event]) {
-    
-    
     
     var newAnnotations: [EventAnnotation] = []
     
     for event in events {
       guard let roomId: String = event.idnoorRoomId else { return }
       guard let object: IndoorwayObjectInfo = map.indoorObjects.first(where: { $0.objectId == roomId }) else { return }
+      if event.imOwner {
+        map.navigate(to: object.coordinate)
+      }
       let annotation = EventAnnotation(object: object, icon: event.icon)
       newAnnotations.append(annotation)
     }
@@ -270,10 +270,4 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   }
   
   
-  
-  
-  
-  
 }
-
-
