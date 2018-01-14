@@ -15,7 +15,6 @@ class EventsData: Mappable {
 
 
 class Event: Mappable {
-    
     public private(set) var id: Int?
     public private(set) var name: String?
     public private(set) var description: String?
@@ -26,10 +25,12 @@ class Event: Mappable {
     public private(set) var no: Int?
     public private(set) var guests: [String]?
     
+    
     var icon: UIImage? {
         guard let iconName: String = iconName else { return nil }
         return UIImage(named: iconName)
     }
+    
     
     var imOwner: Bool {
         return ownerId == ApiService.defaultInstance.userId
@@ -39,11 +40,6 @@ class Event: Mappable {
         return guests?.first { $0 == ApiService.defaultInstance.userId } != nil
     }
     
-    public init(name: String, num: Int, iconName: String, des: String?) {
-        self.name = name
-        self.iconName = iconName
-        self.description = des
-    }
     
     required public init?(map: Map) { }
     

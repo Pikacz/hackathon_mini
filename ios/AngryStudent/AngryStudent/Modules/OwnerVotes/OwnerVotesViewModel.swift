@@ -9,10 +9,6 @@ class OwnerVotesViewModel {
     
     public let event: Variable<Event?> = Variable(nil)
     
-    // MARK: - Initialization
-    
-    // MARK: - Actions
-    
     // MARK: - Helpers
     
     public func setupEvent(for event: Event) {

@@ -17,19 +17,7 @@ class OwnerVotesViewController: BasicViewController {
         return $0
     }(OwnerVotesView())
     
-    
-    // MARK: - Actions
-    
-    private func deleteEvent(with model: Event) {
-        
-    }
-    
-    private func leaveEvent(with model: Event) {
-        
-    }
-    
-    // MARK: - Initialization
-    
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

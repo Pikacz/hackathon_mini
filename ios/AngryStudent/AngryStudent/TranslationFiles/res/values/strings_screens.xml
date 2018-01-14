@@ -4,8 +4,6 @@
 ]>
 <resources>
 
-
-
   <string name="test_parameters1"> integer %d, napis %s </string>
   <string name="test_parameters2"> napis %2$d, integer %1$s </string>
 
@@ -19,16 +17,19 @@
     <item quantity="other">%d mangos</item>
   </plurals>
   
+  
   <!-- Common -->
   <string name="common_room_name">Room %1$s</string>
+  
   
   <!-- Main map -->
   <string name="main_map_parter"> MiNI - parter </string>
   <string name="main_map_first_floor"> MiNI - 1st floor </string>
   <string name="main_map_second_floor"> MiNI - 2nd floor </string>
+  <string name="main_map_tab_bar">Map</string>
   
   
-  <!-- Create Event -->
+  <!-- Create event -->
   <string name="create_event_title">Create event - %1$s</string>
   <string name="create_event_icon_lbl">Select icon</string>
   <string name="create_event_name_lbl">Name</string>
@@ -36,4 +37,15 @@
   <string name="create_event_description_lbl">Description</string>
   <string name="create_event_create_btn">CREATE</string>
   
+  
+  <!-- Events list -->
+  <string name="events_list_title">Events</string>
+  <string name="events_list_tab_bar">Events</string>
+  <string name="events_list_owning">Owning</string>
+  <string name="events_list_other">Other events</string>
+  
+  
+  <!-- Friends -->
+  <string name="friends_title">Friends</string>
+  <string name="friends_tab_bar">Friends</string>
 </resources>

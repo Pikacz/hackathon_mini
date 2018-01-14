@@ -12,6 +12,5 @@ class Friend {
         self.faceIamge = faceImage
         self.event = event
     }
-    
 }
 

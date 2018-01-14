@@ -83,9 +83,9 @@ class EventTableViewCell: BasicTableViewCell {
     
     override public func prepareForReuse() {
         super.prepareForReuse()
-        if let iconName = model?.iconName {
-            iconImageView.image = UIImage(named: iconName)
-        }
+        iconImageView.image = model?.icon?.withRenderingMode(
+            UIImageRenderingMode.alwaysTemplate
+        )
     }
     
     // MARK: - Actions
@@ -98,10 +98,9 @@ class EventTableViewCell: BasicTableViewCell {
     
     func setup(model: Event) {
         self.model = model
-        if let iconName = model.iconName {
-            let image = UIImage(named: iconName)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            iconImageView.image = image
-        }
+        iconImageView.image = model.icon?.withRenderingMode(
+            UIImageRenderingMode.alwaysTemplate
+        )
         nameLabel.text = model.name
         descriptionLabel.text = model.description
     }

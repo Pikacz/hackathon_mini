@@ -4,7 +4,12 @@ import UIKit
 
 extension UIImage {
     func resizeWith(percentage: CGFloat) -> UIImage? {
-        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: size.width * percentage, height: size.height * percentage)))
+        let imageView = UIImageView(frame:
+            CGRect(
+                origin: .zero,
+                size: CGSize(width: size.width * percentage, height: size.height * percentage)
+            )
+        )
         imageView.contentMode = .scaleAspectFit
         imageView.image = self
         UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)

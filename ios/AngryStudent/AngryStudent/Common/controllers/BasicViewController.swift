@@ -38,24 +38,5 @@ class BasicViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationItem.title = nil
     }
-    
-    
-    
-    func display(error: Error) {
-        print("TODO display error")
-    }
-    
-    
-    func showOkAlert(title: String?, message: String?, action: (() -> ())? = nil) {
-        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) {
-            (_: UIAlertAction) in
-            action?()
-        }
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
-    
-    
-    
 }
+

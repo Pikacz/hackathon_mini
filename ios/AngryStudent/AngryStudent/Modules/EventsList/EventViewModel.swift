@@ -2,48 +2,47 @@ import Foundation
 import UIKit
 import RxSwift
 
+
 class EventViewModel {
-    
     // MARK: - Properties
-    
-    public let events: Variable<[(header: String, [Event])]> = Variable([])
+    let events: Variable<[(header: String, [Event])]> = Variable([])
     private var timer: Timer!
     
-    // MARK: - Initialization
     
     // MARK: - Actions
-    
-    func openOwnerEventInfo() {
-        
-    }
-    
-    func openParticipateEventInfo() {
-        
-    }
-    
     func deleteEvent() {
         _ = ApiService.defaultInstance.abandon()
     }
     
-    public func startGettingEvents() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getEvents), userInfo: nil, repeats: true)
+    
+    func startGettingEvents() {
+        timer = Timer.scheduledTimer(
+            timeInterval: 0.5,
+            target: self,
+            selector: #selector(getEvents),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
-    public func stopGettingEvents() {
+    
+    func stopGettingEvents() {
         timer.invalidate()
+        timer = nil
     }
+    
     
     // MARK: - Helpers
-    
     @objc private func getEvents() {
         ApiService.defaultInstance.getEvents().then { [weak self](events) -> Void in
             self?.handleEvents(events: events)
         }
     }
     
+    
     private func handleEvents(events: [Event]) {
-        let headerOwning = "Owning"
-        let headerParticipating = "Other events"
+        let headerOwning = R.string.events_list_owning^
+        let headerParticipating = R.string.events_list_other^
         var owning: [Event] = []
         var participating: [Event] = []
         for event in events {
@@ -62,3 +61,4 @@ class EventViewModel {
         }
     }
 }
+

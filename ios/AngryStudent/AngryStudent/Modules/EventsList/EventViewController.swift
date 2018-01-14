@@ -41,7 +41,7 @@ class EventViewController: BasicViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        navTitle = "Events"
+        navTitle = R.string.events_list_title^
         bindTableView()
     }
     
@@ -92,6 +92,7 @@ class EventViewController: BasicViewController {
 }
 
 
+// MARK: UITableViewDataSource, UITableViewDelegate
 extension EventViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

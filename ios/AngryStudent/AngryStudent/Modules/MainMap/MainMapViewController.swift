@@ -7,7 +7,7 @@ import RxSwift
 fileprivate let createEventSegue: String = "create_event"
 
 
-class EventsMapViewController: BasicViewController, IndoorwayMapListener, IndoorwayPositionListener, EventsMapViewDelegate {
+class MainMapViewController: BasicViewController, IndoorwayMapListener, IndoorwayPositionListener, EventsMapViewDelegate {
     @IBOutlet private weak var eventsMapView: EventsMapView! {
         didSet {
             updateMap()
@@ -120,11 +120,9 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
             if event.imOwner {
                 removeParticipateView()
                 addOwnerView(for: event)
-                print("jestem ownerem")
             } else if event.imParticipate {
                 removeOwnerView()
                 addParticipateView(with: event)
-                print("pokaz participate")
             } else {
                 guard let eventID: Int = event.id else {
                     removeOwnerView()
@@ -134,7 +132,6 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
                 
                 ApiService.defaultInstance.join(eventID: "\(eventID)").then {
                     () -> Void in
-                    print("pokaz participate")
                     }.always {
                         self.isLoading = false
                 }

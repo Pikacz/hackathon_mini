@@ -10,8 +10,6 @@ class ParticipaterVotesViewModel {
     
     public let eventVote: Variable<Bool?> = Variable(nil)
     
-    // MARK: - Initialization
-    
     // MARK: - Actions
     
     func vote(postivie: Bool) {

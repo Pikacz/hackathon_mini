@@ -2,11 +2,6 @@ import Foundation
 import UIKit
 
 class  ParticipaterVotesView: BasicView  {
-    
-    // MARK: - Delegate
-    
-    // MARK: - Properties
-    
     // MARK: - Outlets
     
     private let bcgView: UIView = {
@@ -86,9 +81,8 @@ class  ParticipaterVotesView: BasicView  {
     // MARK: - Helpers
     
     func setup(model: Event) {
-        if let iconName = model.iconName {
-            evnetImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
-        }
+        evnetImageView.image = model.icon
+        
         desLabel.text = model.name
     }
     
@@ -149,3 +143,4 @@ class  ParticipaterVotesView: BasicView  {
         votesStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
+

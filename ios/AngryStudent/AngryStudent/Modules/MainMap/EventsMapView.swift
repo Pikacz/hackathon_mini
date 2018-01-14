@@ -96,48 +96,31 @@ extension IndoorwayMapView {
 
 class EventsMapView: BasicView, IndoorwayMapViewDelegate {
     private let map: IndoorwayMapView = IndoorwayMapView()
-    private let mapNotLoadedView: UIView = UIView()
     
     weak var delegate: EventsMapViewDelegate?
-    
     var showsUserLocation: Bool = true
-    
     
     
     override func initialize() {
         super.initialize()
-        
         backgroundColor = Color.white
-        
         addSubview(map)
-        addSubview(mapNotLoadedView)
-        
-        mapNotLoadedView.backgroundColor = Color.white
         
         map.scrollView.maximumZoomScale = CGFloat(8.0)
         map.delegate = self
-    }
-    
-    override var backgroundColor: UIColor? {
-        didSet {
-            mapNotLoadedView.backgroundColor = backgroundColor
-        }
     }
     
     
     override func layoutSubviews() {
         super.layoutSubviews()
         map.frame = bounds
-        mapNotLoadedView.frame = map.frame
     }
     
     
     func show(events: [Event]) {
-        
         if events.isEmpty {
             map.stopNavigation()
         }
-        
         var newAnnotations: [EventAnnotation] = []
         
         for event in events {
@@ -154,17 +137,17 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
             newAnnotations.append(annotation)
         }
         
-        let oldAnnotations = map.annotations.map { $0 as? EventAnnotation }.filter { $0 != nil }.map { $0! }
+        let oldAnnotations = map.annotations.map {
+            $0 as? EventAnnotation
+        }.filter { $0 != nil }.map { $0! }
+        
         var oldSet: Set<String> = []
         
         for old: EventAnnotation in oldAnnotations {
             oldSet.insert(old.reuseId)
         }
         
-        
         var toAdd: [EventAnnotation] = []
-        
-        
         for new in newAnnotations {
             if !oldSet.contains(new.reuseId) {
                 toAdd.append(new)
@@ -177,10 +160,8 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
         
         map.removeAnnotations(toRemove)
         map.addAnnotations(toAdd)
-        
-        
-        
     }
+    
     
     func load(with event: Event, completion: ((Bool) -> ())? = nil) {
         guard let objId: String = event.idnoorRoomId else {
@@ -196,7 +177,6 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
         isUserInteractionEnabled = false
         load(with: desc) {
             (succeed: Bool) in
-            
             if succeed {
                 if let obj = self.map.indoorObjects.first(where: {
                     (obj: IndoorwayObjectInfo) -> Bool in
@@ -204,9 +184,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
                 }) {
                     self.map.selectObject(withIndoorwayObject: obj)
                 }
-                
             }
-            
             completion?(succeed)
         }
     }
@@ -217,10 +195,10 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
             [weak self] (succeed: Bool) in
             completion?(succeed)
             self?.map.showsUserLocation = succeed && (self?.showsUserLocation ?? false)
-            self?.mapNotLoadedView.isHidden = succeed
         }
     }
     
+    // MARK: IndoorwayMapViewDelegate
     @objc func mapViewDidFinishLoadingMap(_ mapView: IndoorwayMapView) {
         delegate?.eventsMapView(mapDidLoad: self)
     }
@@ -254,12 +232,9 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
         
     }
     
-    
-    
+
     @objc func mapView(_ mapView: IndoorwayMapView, viewForAnnotation annotation: IndoorwayAnnotation) -> IndoorwayAnnotationView? {
         var view: IndoorwayAnnotationView? = nil
-        
-        
         if let annotation: EventAnnotation = annotation as? EventAnnotation {
             if let reusedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.reuseId) {
                 view = reusedView
@@ -273,9 +248,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
                 view = newView
             }
         }
-        
         return view
     }
-    
-    
 }
+

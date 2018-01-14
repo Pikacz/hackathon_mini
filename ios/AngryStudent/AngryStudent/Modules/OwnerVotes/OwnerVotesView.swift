@@ -4,11 +4,6 @@ import RxSwift
 
 
 class  OwnerVotesView: BasicView  {
-    
-    // MARK: - Delegate
-    
-    // MARK: - Properties
-    
     // MARK: - Outlets
     
     private let bcgView: UIView = {
@@ -168,15 +163,12 @@ class  OwnerVotesView: BasicView  {
         setupUI()
     }
     
-    // MARK: - Actions
-    
     // MARK: - Helpers
         
     func setup(model: Event) {
         
-        if let iconName = model.iconName {
-            evnetImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
-        }
+        evnetImageView.image = model.icon?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        
         desLabel.text = model.name
         okLabel.text = "\(model.yes!)"
         badLabel.text = "\(model.no!)"

@@ -1,98 +1,4 @@
 import UIKit
-import IndoorwaySdk
-
-
-class CreateEventViewController: BasicViewController {
-    
-    
-    @IBOutlet private weak var iconLbl: UILabel! {
-        didSet {
-            iconLbl.text = R.string.create_event_icon_lbl^
-            iconLbl.font = Font.subtitle
-            iconLbl.textColor = Color.blueDark
-        }
-    }
-    @IBOutlet private weak var iconSelectView: SelectIconView!
-    @IBOutlet private weak var nameLbl: UILabel! {
-        didSet {
-            nameLbl.text = R.string.create_event_name_lbl^
-            nameLbl.font = Font.subtitle
-            nameLbl.textColor = Color.blueDark
-        }
-    }
-    @IBOutlet private weak var nameField: UITextField! {
-        didSet {
-            nameField.placeholder = R.string.create_event_name_placeholder^
-            nameField.font = Font.standard
-            nameField.textColor = Color.blueDark
-        }
-    }
-    @IBOutlet private weak var descriptionLbl: UILabel! {
-        didSet {
-            descriptionLbl.text = R.string.create_event_description_lbl^
-            descriptionLbl.font = Font.subtitle
-            descriptionLbl.textColor = Color.blueDark
-        }
-    }
-    @IBOutlet private weak var descriptionTextView: UITextView! {
-        didSet {
-            descriptionTextView.text = ""
-            descriptionTextView.layer.borderWidth = CGFloat(1.0)
-            descriptionTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
-            descriptionTextView.layer.cornerRadius = CGFloat(8.0)
-            descriptionTextView.font = Font.standard
-            descriptionTextView.textColor = Color.blueDark
-        }
-    }
-    @IBOutlet private weak var createBtn: UIButton! {
-        didSet {
-            createBtn.setTitle(R.string.create_event_create_btn^, for: UIControlState.normal)
-            
-            createBtn.setTitleColor(Color.white, for: UIControlState.normal)
-            createBtn.titleLabel?.font = Font.subtitle
-            createBtn.backgroundColor = Color.blue
-            createBtn.layer.cornerRadius = CGFloat(26.0)
-            createBtn.addTarget(self, action: #selector(submmit), for: UIControlEvents.touchUpInside)
-        }
-    }
-    
-    
-    var room: IndoorwayObjectInfo!
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print(R.string.create_event_title^)
-        navTitle = R.string.create_event_title[room.roomName!]
-    }
-    
-    
-    // MARK: private
-    @objc private func submmit() {
-        let name: String = nameField.text!
-        let description: String = descriptionTextView.text!
-        let icon: String = iconSelectView.selectedIcon
-        let roomId: String = room.objectId
-        
-        
-        isLoading = true
-        ApiService.defaultInstance.createEvent(
-            name: name,
-            description: description,
-            icon: icon,
-            roomId: roomId
-            ).then {
-                () -> Void in
-                self.navigationController?.popViewController(animated: true)
-            }.always {
-                self.isLoading = true
-        }
-    }
-}
-
-
 
 
 fileprivate let cellId: String = "a"
@@ -106,13 +12,10 @@ fileprivate let imageNames: [String] = [
     "Book",
 ]
 
+
 class SelectIconView: BasicView, UICollectionViewDataSource {
     private var collectionView: UICollectionView!
-    
-    
     private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    
-    
     
     
     var selectedIcon: String {
@@ -120,22 +23,18 @@ class SelectIconView: BasicView, UICollectionViewDataSource {
             return ""
         }
         return imageNames[index]
-        
     }
+    
     
     override func initialize() {
         super.initialize()
         
         flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
-        //    flowLayout.minimumInteritemSpacing = CGFloat(8.0)
-        
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         
         addSubview(collectionView)
-        
-        
         
         collectionView.register(SelectIconCell.self, forCellWithReuseIdentifier: cellId)
         
@@ -150,6 +49,7 @@ class SelectIconView: BasicView, UICollectionViewDataSource {
             scrollPosition: UICollectionViewScrollPosition.top
         )
     }
+ 
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -163,6 +63,7 @@ class SelectIconView: BasicView, UICollectionViewDataSource {
         return CGSize(width: UIViewNoIntrinsicMetric, height: CGFloat(90.0))
     }
     
+    
     // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: SelectIconCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SelectIconCell
@@ -171,18 +72,16 @@ class SelectIconView: BasicView, UICollectionViewDataSource {
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageNames.count
     }
 }
 
 
-
-
-
-
 class SelectIconCell: BasicCollectionViewCell {
     private let imageView: UIImageView = UIImageView()
+    
     
     override func initialize() {
         super.initialize()
@@ -195,6 +94,7 @@ class SelectIconCell: BasicCollectionViewCell {
         imageView.contentMode = UIViewContentMode.scaleAspectFit
     }
     
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -206,13 +106,16 @@ class SelectIconCell: BasicCollectionViewCell {
         
     }
     
+    
     override var isSelected: Bool {
         didSet {
             contentView.layer.borderColor = isSelected ? Color.blue.cgColor : Color.gray.cgColor
         }
     }
     
+    
     func display(image: UIImage?) {
         imageView.image = image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
     }
 }
+
