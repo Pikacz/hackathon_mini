@@ -1,14 +1,7 @@
-//
-//  FriendsViewController.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 14.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import RxSwift
+
 
 class FriendsViewController: BasicViewController {
     
@@ -75,7 +68,7 @@ extension FriendsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.friends.value.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableViewCell.self), for: indexPath) as! FriendsTableViewCell
         let cellModel = viewModel.friends.value[indexPath.row]

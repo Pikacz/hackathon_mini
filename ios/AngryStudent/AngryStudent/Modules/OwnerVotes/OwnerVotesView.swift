@@ -1,21 +1,9 @@
-//
-//  OwnerVotesView.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import RxSwift
 
+
 class  OwnerVotesView: BasicView  {
-    
-    // MARK: - Delegate
-    
-    // MARK: - Properties
-    
     // MARK: - Outlets
     
     private let bcgView: UIView = {
@@ -175,15 +163,12 @@ class  OwnerVotesView: BasicView  {
         setupUI()
     }
     
-    // MARK: - Actions
-    
     // MARK: - Helpers
         
     func setup(model: Event) {
         
-        if let iconName = model.iconName {
-            evnetImageView.image = UIImage(named: iconName)
-        }
+        evnetImageView.image = model.icon?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        
         desLabel.text = model.name
         okLabel.text = "\(model.yes!)"
         badLabel.text = "\(model.no!)"
@@ -196,11 +181,7 @@ class  OwnerVotesView: BasicView  {
         addSubview(bcgView)
         topStackView.addArrangedSubview(evnetImageView)
         topStackView.addArrangedSubview(desLabel)
-        //viewsStackView.addArrangedSubview(nrLabel)
-        //viewsStackView.addArrangedSubview(iconImageView)
         addSubview(topStackView)
-        //addSubview(viewsStackView)
-        //addSubview(infoLabel)
         okStackView.addArrangedSubview(okImageView)
         okStackView.addArrangedSubview(okLabel)
         badStackView.addArrangedSubview(badImageView)
@@ -211,9 +192,7 @@ class  OwnerVotesView: BasicView  {
         setupBcgView()
         setupEventImageView()
         setupOkBadImageVIews()
-//        setupIconImageView()
         setupTopStackView()
-        //setupViewsStackView()
         setupVotesStackView()
     }
     
@@ -229,10 +208,6 @@ class  OwnerVotesView: BasicView  {
         evnetImageView.heightAnchor.constraint(equalTo: evnetImageView.widthAnchor).isActive = true
     }
     
-//    private func setupIconImageView() {
-//        iconImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        iconImageView.heightAnchor.constraint(equalTo: evnetImageView.widthAnchor).isActive = true
-//    }
     
     private func setupOkBadImageVIews() {
         okImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -246,10 +221,6 @@ class  OwnerVotesView: BasicView  {
         topStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-//    private func setupViewsStackView() {
-//        viewsStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 10).isActive = true
-//        viewsStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//    }
     
     private func setupVotesStackView() {
         votesStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 15).isActive = true

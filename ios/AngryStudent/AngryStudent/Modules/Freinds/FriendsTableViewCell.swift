@@ -1,13 +1,6 @@
-//
-//  FriendsTableViewCell.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 14.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
+
 
 class FriendsTableViewCell: BasicTableViewCell {
     
@@ -118,3 +111,4 @@ class FriendsTableViewCell: BasicTableViewCell {
         labelsStackView.trailingAnchor.constraint(equalTo: bcgView.trailingAnchor, constant: -5).isActive = true
     }
 }
+

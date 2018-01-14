@@ -1,20 +1,7 @@
-//
-//  ParticipaterVotesView.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
 class  ParticipaterVotesView: BasicView  {
-    
-    // MARK: - Delegate
-    
-    // MARK: - Properties
-    
     // MARK: - Outlets
     
     private let bcgView: UIView = {
@@ -94,10 +81,19 @@ class  ParticipaterVotesView: BasicView  {
     // MARK: - Helpers
     
     func setup(model: Event) {
-        if let iconName = model.iconName {
-            evnetImageView.image = UIImage(named: iconName)
-        }
+        evnetImageView.image = model.icon
+        
         desLabel.text = model.name
+    }
+    
+    func setup(vote: Bool?) {
+        guard let vote = vote else {
+            yupButton.tintColor = Color.grayDark
+            nupButton.tintColor = Color.grayDark
+            return
+        }
+        yupButton.tintColor = vote ? Color.green : Color.grayDark
+        nupButton.tintColor = !vote ? Color.red : Color.grayDark
     }
     
     // MARK: - Setup
@@ -141,9 +137,10 @@ class  ParticipaterVotesView: BasicView  {
         topStackView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         topStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-
+    
     private func setupVotesStackView() {
         votesStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 15).isActive = true
         votesStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
+

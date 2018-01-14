@@ -1,18 +1,11 @@
-//
-//  EventTableViewHeader.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
+
 
 class EventTableViewHeader: BasicView {
     
     // MARK: - Outlets
-
+    
     private let nameLabel: UILabel = {
         $0.textColor = Color.blueDark
         $0.font = UIFont.systemFont(ofSize: 17)
@@ -49,3 +42,4 @@ class EventTableViewHeader: BasicView {
         nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
+

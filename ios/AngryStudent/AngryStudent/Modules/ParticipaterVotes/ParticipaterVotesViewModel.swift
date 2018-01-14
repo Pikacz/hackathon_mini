@@ -1,11 +1,3 @@
-//
-//  ParticipaterVotesViewModel.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import RxSwift
@@ -16,12 +8,17 @@ class ParticipaterVotesViewModel {
     
     public let event: Variable<Event?> = Variable(nil)
     
-    // MARK: - Initialization
+    public let eventVote: Variable<Bool?> = Variable(nil)
     
     // MARK: - Actions
     
     func vote(postivie: Bool) {
-        _ = ApiService.defaultInstance.sendVote(vote: postivie, eventID: (event.value?.idnoorRoomId)!)
+        eventVote.value = postivie
+        _ = ApiService.defaultInstance.sendVote(vote: postivie, eventID: (event.value?.id)!)
+    }
+    
+    func resetVote() {
+        eventVote.value = nil
     }
     
     // MARK: - Helpers

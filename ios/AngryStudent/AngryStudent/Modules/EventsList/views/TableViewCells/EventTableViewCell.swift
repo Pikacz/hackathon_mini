@@ -1,17 +1,11 @@
-//
-//  EventTableViewCell.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
+
 
 protocol EventTableViewCellDelegate: class {
     func eventTableViewCellRemove(cell: EventTableViewCell, model: Event?)
 }
+
 
 class EventTableViewCell: BasicTableViewCell {
     
@@ -89,9 +83,9 @@ class EventTableViewCell: BasicTableViewCell {
     
     override public func prepareForReuse() {
         super.prepareForReuse()
-        if let iconName = model?.iconName {
-            iconImageView.image = UIImage(named: iconName)
-        }
+        iconImageView.image = model?.icon?.withRenderingMode(
+            UIImageRenderingMode.alwaysTemplate
+        )
     }
     
     // MARK: - Actions
@@ -104,12 +98,9 @@ class EventTableViewCell: BasicTableViewCell {
     
     func setup(model: Event) {
         self.model = model
-        if let iconName = model.iconName {
-            let image = UIImage(named: iconName)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            print("♞")
-            print(model.iconName)
-            iconImageView.image = image
-        }
+        iconImageView.image = model.icon?.withRenderingMode(
+            UIImageRenderingMode.alwaysTemplate
+        )
         nameLabel.text = model.name
         descriptionLabel.text = model.description
     }

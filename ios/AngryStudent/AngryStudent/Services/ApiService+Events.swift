@@ -13,7 +13,6 @@ extension ApiService {
       expectedCodes: [200],
       parser: {
         (json: String, code: Int) -> Void in
-        print(json)
         return
     }
     )
@@ -28,7 +27,6 @@ extension ApiService {
       expectedCodes: [200],
       parser: {
         (json: String, code: Int) -> Void in
-        print(json)
         return
     }
     )
@@ -59,7 +57,7 @@ extension ApiService {
       expectedCodes: [200],
       parser: {
         (json: String, code: Int) -> Void in
-        print(json)
+
         return
     }
     )
@@ -67,7 +65,6 @@ extension ApiService {
   
   func getEvents() -> Promise<[Event]> {
     let url = "\(baseUrl)/user/data?user-id=\(userId)"
-    print("😁 \(url)")
     return request(url: url,
                    method: HTTPMethod.get,
                    parameters: nil,
@@ -78,32 +75,40 @@ extension ApiService {
     })
   }
   
-  func sendVote(vote: Bool, eventID: String) -> Promise<Void> {
+  func sendVote(vote: Bool, eventID: Int) -> Promise<Void> {
     let voteBool = vote ? 1 : 0
     let url = "\(baseUrl)/user/vote?user-id=\(userId)&value=\(voteBool)&event-id=\(eventID)"
-    print("😁 \(url)")
     return request(url: url,
                    method: HTTPMethod.get,
                    parameters: nil,
                    expectedCodes: [200],
                    parser: { (json, code) -> Void in
-                    print(json)
+                    
                     return
     })
   }
   
   func join(eventID: String) -> Promise<Void> {
     let url = "\(baseUrl)/user/join?user-id=\(userId)&event-id=\(eventID)"
-    print("😁 \(url)")
     return request(url: url,
                    method: HTTPMethod.get,
                    parameters: nil,
                    expectedCodes: [200],
                    parser: { (json, code) -> Void in
-                    print(json)
                     return
     })
   }
+    
+    func abandon() -> Promise<Void> {
+        let url = "\(baseUrl)/user/abandon?user-id=\(userId)"
+        return request(url: url,
+                       method: HTTPMethod.get,
+                       parameters: nil,
+                       expectedCodes: [200],
+                       parser: { (json, code) -> Void in
+                        return
+        })
+    }
   
   func statrtSpammingLocation() {
     spamLocationListener = LocationsListener()

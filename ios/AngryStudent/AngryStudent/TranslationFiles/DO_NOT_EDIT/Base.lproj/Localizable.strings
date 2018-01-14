@@ -5,7 +5,16 @@
 "create_event_name_lbl" = "Name";
 "create_event_name_placeholder" = "My event";
 "create_event_title" = "Create event - %1$@";
-"main_map_title" = "%1$@";
+"events_list_other" = "Other events";
+"events_list_owning" = "Owning";
+"events_list_tab_bar" = "Events";
+"events_list_title" = "Events";
+"friends_tab_bar" = "Friends";
+"friends_title" = "Friends";
+"main_map_first_floor" = "MiNI - 1st floor";
+"main_map_parter" = "MiNI - parter";
+"main_map_second_floor" = "MiNI - 2nd floor";
+"main_map_tab_bar" = "Map";
 "test" = "test jest ok";
 "test_parameters1" = "integer %d, napis %@";
 "test_parameters2" = "napis %2$d, integer %1$@";
