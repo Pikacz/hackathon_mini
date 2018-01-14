@@ -23,7 +23,9 @@
   <string name="common_room_name">Room %1$s</string>
   
   <!-- Main map -->
-  <string name="main_map_title">%1$s</string>
+  <string name="main_map_parter"> MiNI - parter </string>
+  <string name="main_map_first_floor"> MiNI - 1st floor </string>
+  <string name="main_map_second_floor"> MiNI - 2nd floor </string>
   
   
   <!-- Create Event -->

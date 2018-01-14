@@ -55,9 +55,7 @@ class Event: Mappable {
         yes                <- map["yes"]
         no                 <- map["no"]
       guests               <- map["guests-id"]
-      print("😡😡😡😡😡😡😡")
-      print(guests)
-      print("😡😡😡😡😡😡😡")
+      
       
       
     }

@@ -19,8 +19,12 @@ struct R {
         case create_event_name_placeholder
         /// Create event - %1$@
         case create_event_title
-        /// %1$@
-        case main_map_title
+        /// MiNI - 1st floor
+        case main_map_first_floor
+        /// MiNI - parter
+        case main_map_parter
+        /// MiNI - 2nd floor
+        case main_map_second_floor
         /// test jest ok
         case test
         /// integer %d, napis %@

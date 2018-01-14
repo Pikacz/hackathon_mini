@@ -52,7 +52,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
         currentMapDesc = IndoorwayLocationSdk.instance().map.latest()
         isLoading = true
         
-        navTitle = R.string.main_map_title["MiNI - 2nd floor"]
+      
         view.backgroundColor = Color.white
         setupOwnerView()
         setupParticipateView()
@@ -178,7 +178,14 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     
     // MARK: IndoorwayMapListener
     func mapChanged(map: IndoorwayMapDescription) {
-        
+      if let floor: Int = map.floor {
+        switch floor {
+        case 0: navTitle = R.string.main_map_parter^
+        case 1: navTitle = R.string.main_map_first_floor^
+        case 2: navTitle = R.string.main_map_second_floor^
+        default: break
+        }
+      }
         currentMapDesc = map
     }
     
