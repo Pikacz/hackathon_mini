@@ -53,6 +53,17 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
   }
   
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let identifier: String = segue.identifier ?? ""
+    switch identifier {
+    case createEventSegue:
+      let dest: CreateEventViewController = segue.destination as! CreateEventViewController
+      dest.room = sender as! IndoorwayObjectInfo
+    default:
+      break
+    }
+  }
+  
   
   private var x: IndoorwayLocation? {
     didSet {

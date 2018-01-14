@@ -27,7 +27,7 @@
   
   
   <!-- Create Event -->
-  <string name="create_event_title">Create event</string>
+  <string name="create_event_title">Create event - %1$s</string>
   <string name="create_event_icon_lbl">Select icon</string>
   <string name="create_event_name_lbl">Name</string>
   <string name="create_event_name_placeholder">My event</string>

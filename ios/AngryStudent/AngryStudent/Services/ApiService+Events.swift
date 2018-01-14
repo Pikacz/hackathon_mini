@@ -36,10 +36,25 @@ extension ApiService {
   }
   
   func createEvent(name: String, description: String, icon: String, roomId: String) -> Promise<Void> {
-    let url = "\(baseUrl)/user/host-event?owner-id=\(userId)&name=\(name)&icon=\(icon)&description=\(description)&room-id=\(roomId)"
-    print ("😁 \(url)")
+    let url = "\(baseUrl)/user/host-event"
+    let params: [URLQueryItem] = [
+      URLQueryItem(name: "owner-id", value: userId),
+      URLQueryItem(name: "name", value: name),
+      URLQueryItem(name: "icon", value: icon),
+      URLQueryItem(name: "description", value: description),
+      URLQueryItem(name: "room-id", value: roomId),
+    ]
+    
+    
+    
+      var components = URLComponents(string: url)!
+      components.queryItems = params
+      components.percentEncodedQuery = components.percentEncodedQuery
+    
+    
+    
     return request(
-      url: url,
+      url: components.url!.absoluteString,
       method: HTTPMethod.get,
       parameters: nil,
       expectedCodes: [200],

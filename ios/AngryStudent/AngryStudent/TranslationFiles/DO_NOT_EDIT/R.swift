@@ -17,7 +17,7 @@ struct R {
         case create_event_name_lbl
         /// My event
         case create_event_name_placeholder
-        /// Create event
+        /// Create event - %1$@
         case create_event_title
         /// %1$@
         case main_map_title

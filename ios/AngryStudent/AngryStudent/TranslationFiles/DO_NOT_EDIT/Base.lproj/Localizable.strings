@@ -4,7 +4,7 @@
 "create_event_icon_lbl" = "Select icon";
 "create_event_name_lbl" = "Name";
 "create_event_name_placeholder" = "My event";
-"create_event_title" = "Create event";
+"create_event_title" = "Create event - %1$@";
 "main_map_title" = "%1$@";
 "test" = "test jest ok";
 "test_parameters1" = "integer %d, napis %@";
