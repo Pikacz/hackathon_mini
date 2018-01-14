@@ -23,7 +23,6 @@
 		34B492CC200A36C1000C5945 /* BasicViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B492CB200A36C1000C5945 /* BasicViews.swift */; };
 		34B492CE200A3714000C5945 /* BasicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B492CD200A3714000C5945 /* BasicTableView.swift */; };
 		34B492D0200A3776000C5945 /* BasicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B492CF200A3776000C5945 /* BasicCollectionView.swift */; };
-		34B492D3200A3A9E000C5945 /* EventsMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34B492D2200A3A9E000C5945 /* EventsMap.storyboard */; };
 		34BDEB4D200A65FB00916A88 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB4C200A65FB00916A88 /* MapService.swift */; };
 		34BDEB53200A8EE100916A88 /* EventsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB50200A8EE100916A88 /* EventsMapView.swift */; };
 		34BDEB55200A8EE100916A88 /* EventsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB52200A8EE100916A88 /* EventsMapViewController.swift */; };
@@ -32,6 +31,7 @@
 		34BDEB62200ABFE200916A88 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB61200ABFE200916A88 /* CreateEventViewController.swift */; };
 		34BDEB64200AC35A00916A88 /* ApiService+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB63200AC35A00916A88 /* ApiService+Events.swift */; };
 		34BDEB67200AC56400916A88 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB66200AC56400916A88 /* OnboardingViewController.swift */; };
+		34BDEB6B200B03DA00916A88 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDEB6A200B03DA00916A88 /* EventDetailsViewController.swift */; };
 		34C55E872008C8960056AC2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C55E862008C8960056AC2E /* AppDelegate.swift */; };
 		34C55E892008C8960056AC2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C55E882008C8960056AC2E /* ViewController.swift */; };
 		34C55E8E2008C8960056AC2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C55E8D2008C8960056AC2E /* Assets.xcassets */; };
@@ -106,7 +106,6 @@
 		34B492CB200A36C1000C5945 /* BasicViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViews.swift; sourceTree = "<group>"; };
 		34B492CD200A3714000C5945 /* BasicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableView.swift; sourceTree = "<group>"; };
 		34B492CF200A3776000C5945 /* BasicCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCollectionView.swift; sourceTree = "<group>"; };
-		34B492D2200A3A9E000C5945 /* EventsMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventsMap.storyboard; sourceTree = "<group>"; };
 		34BDEB4C200A65FB00916A88 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		34BDEB50200A8EE100916A88 /* EventsMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsMapView.swift; sourceTree = "<group>"; };
 		34BDEB52200A8EE100916A88 /* EventsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsMapViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		34BDEB61200ABFE200916A88 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		34BDEB63200AC35A00916A88 /* ApiService+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApiService+Events.swift"; sourceTree = "<group>"; };
 		34BDEB66200AC56400916A88 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		34BDEB6A200B03DA00916A88 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		34C55E832008C8950056AC2E /* AngryStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AngryStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C55E862008C8960056AC2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C55E882008C8960056AC2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -332,8 +332,8 @@
 			children = (
 				34B492D7200A3D11000C5945 /* views */,
 				9EF3D837200A7B4F00DCE9A2 /* EventViewController.swift */,
-				34B492D2200A3A9E000C5945 /* EventsMap.storyboard */,
 				9EF3D839200A7B5900DCE9A2 /* EventViewModel.swift */,
+				34BDEB6A200B03DA00916A88 /* EventDetailsViewController.swift */,
 				9EF3D83B200A7B6900DCE9A2 /* Events.storyboard */,
 			);
 			path = EventsMap;
@@ -630,7 +630,6 @@
 				3455BE52200A2CBB00F49E00 /* HomeMap.storyboard in Resources */,
 				3466E7132008D5BC00ACEF27 /* Localizable.strings in Resources */,
 				3466E7012008D47800ACEF27 /* Main.storyboard in Resources */,
-				34B492D3200A3A9E000C5945 /* EventsMap.storyboard in Resources */,
 				9EF3D84D200AA59500DCE9A2 /* OwnerVotes.storyboard in Resources */,
 				3466E7022008D47800ACEF27 /* LaunchScreen.storyboard in Resources */,
 				34C55E8E2008C8960056AC2E /* Assets.xcassets in Resources */,
@@ -908,6 +907,7 @@
 				9EF3D836200A792000DCE9A2 /* EventTableViewHeader.swift in Sources */,
 				9EF3D82F200A6CB000DCE9A2 /* Event.swift in Sources */,
 				34BDEB5F200ABFCB00916A88 /* IndoorwayMapDescription+Floor.swift in Sources */,
+				34BDEB6B200B03DA00916A88 /* EventDetailsViewController.swift in Sources */,
 				34B492CE200A3714000C5945 /* BasicTableView.swift in Sources */,
 				9EF3D81F200A514D00DCE9A2 /* TabBarViewModel.swift in Sources */,
 				9EF3D857200ACCFC00DCE9A2 /* FriendsViewController.swift in Sources */,

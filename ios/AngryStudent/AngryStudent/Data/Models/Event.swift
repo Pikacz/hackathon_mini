@@ -28,6 +28,9 @@ class Event: Mappable {
     return UIImage(named: iconName)
   }
   
+  var imOwner: Bool {
+    return ownerId == ApiService.defaultInstance.userId
+  }
     
     public init(name: String, num: Int, iconName: String, des: String?) {
         self.name = name

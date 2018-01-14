@@ -11,13 +11,19 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
   @IBOutlet private weak var eventsMapView: EventsMapView! {
     didSet {
       updateMap()
+      displayEvents()
       eventsMapView.delegate = self
     }
   }
   
   
+  private var eventsDict: [String: Event] = [:]
+  private var events: [Event] = []
+  
   private var mapSyncing: Bool = false
   private var positionSyncing: Bool = false
+  
+  private var timer: Timer?
   
   private var currentMapDesc: IndoorwayMapDescription? {
     didSet {
@@ -48,7 +54,30 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     
     navTitle = R.string.main_map_title["MiNI - 2nd floor"]
     view.backgroundColor = Color.white
+    setupOwnerView()
     
+  }
+  
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    
+    timer = Timer.scheduledTimer(
+      timeInterval: 3,
+      target: self,
+      selector: #selector(download),
+      userInfo: nil,
+      repeats: true
+    )
+    download()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    timer?.invalidate()
+    timer = nil
   }
   
   
@@ -66,14 +95,61 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
   
   
   
+  
+  
   // MARK: EventsMapViewDelegate
-  func eventsMapView(mapDidLoad view: EventsMapView) {}
+  func eventsMapView(mapDidLoad view: EventsMapView) {
+    displayEvents()
+  }
   func eventsMapView(failedLoad view: EventsMapView, with error: Error) {}
   
   
   func eventsMapView(didSelect view: EventsMapView, object: IndoorwayObjectInfo) {
-    performSegue(withIdentifier: createEventSegue, sender: object)
+    
+    if let event: Event = eventsDict[object.objectId] {
+      if event.imOwner {
+        eventsMapView.isUserInteractionEnabled = false
+        
+        UIView.animate(withDuration: 1) {
+          self.ownerView.alpha = 1.0
+        }
+        print("jestem ownerem")
+      }
+    } else {
+      performSegue(withIdentifier: createEventSegue, sender: object)
+    }
+    
   }
+  
+  
+  // MARK: private
+  @objc private func download() {
+    _ = ApiService.defaultInstance.getEvents().then {
+      (events: [Event]) -> Void in
+      self.update(events: events)
+    }
+  }
+  
+  private func update(events: [Event]) {
+    for event: Event in events {
+      if event.imOwner {
+        ownerView.setup(model: event)
+      }
+      guard let roomId: String = event.idnoorRoomId else { continue }
+      self.eventsDict[roomId] = event
+    }
+    self.events = events
+    displayEvents()
+  }
+  
+  
+  private func displayEvents() {
+    eventsMapView?.show(events: events)
+  }
+  
+  
+  // ****************************************************
+  
   
   // MARK: IndoorwayPositionListener
   func positionChanged(position: IndoorwayLocation) {
@@ -121,20 +197,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
         return $0
     }(ParticipaterVotesView())
     
-//  
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        IndoorwayLocationSdk.instance().position.onChange.addListener(listener: self)
-//        positionSyncing = true
-//        IndoorwayLocationSdk.instance().map.onChange.addListener(listener: self)
-//        mapSyncing = true
-//        currentMapDesc = IndoorwayLocationSdk.instance().map.latest()
-//        isLoading = true
-//        // setupOwnerView()
-//        // addOwnerView()
-//        setupParticipateView()
-//        addParticipateView()
-//    }
+
     
     
  
@@ -143,10 +206,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     // MARK: - Binding
     
     private func bindOwnerView() {
-        ownerViewModel.groupEvent.asObservable().subscribe(onNext: { [weak self] (event) in
-            guard let event = event else { return }
-            self?.ownerView.setup(model: event)
-        }).disposed(by: disposeBag)
+
     }
     
     // MARK: - UI
@@ -168,6 +228,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
         self.view.addSubview(ownerView)
         setupOwnerViewConstrains()
         bindOwnerView()
+      ownerView.alpha = 0.0
     }
     
     private func setupOwnerViewConstrains() {

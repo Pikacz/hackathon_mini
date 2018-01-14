@@ -27,6 +27,8 @@ fileprivate let idToCenterCoord: [String: IndoorwayLatLon] = [
 
 
 
+
+
 extension IndoorwayObjectInfo {
   var roomName: String? {
     guard let number: String = idToNumber[self.objectId] else {

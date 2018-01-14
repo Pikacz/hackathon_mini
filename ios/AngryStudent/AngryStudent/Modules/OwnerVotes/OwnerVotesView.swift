@@ -185,8 +185,8 @@ class  OwnerVotesView: BasicView  {
             evnetImageView.image = UIImage(named: iconName)
         }
         desLabel.text = model.name
-        okLabel.text = "\(model.yes)"
-        badLabel.text = "\(model.no)"
+        okLabel.text = "\(model.yes!)"
+        badLabel.text = "\(model.no!)"
     }
     
     // MARK: - Setup

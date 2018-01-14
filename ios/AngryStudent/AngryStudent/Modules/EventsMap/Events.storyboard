@@ -33,10 +33,43 @@
                         <viewLayoutGuide key="safeArea" id="fsb-dG-kJG"/>
                     </view>
                     <navigationItem key="navigationItem" id="kAt-YJ-cxS"/>
+                    <connections>
+                        <segue destination="KRc-xX-BMo" kind="show" identifier="show_details" id="Te8-1H-HA7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WIC-BN-IIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="77.599999999999994" y="66.11694152923539"/>
+        </scene>
+        <!--Event Details View Controller-->
+        <scene sceneID="ym7-cx-FKI">
+            <objects>
+                <viewController id="KRc-xX-BMo" customClass="EventDetailsViewController" customModule="AngryStudent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fNc-NL-OqW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62h-3G-VtT" customClass="EventsMapView" customModule="AngryStudent" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="POF-gG-I6U" firstAttribute="bottom" secondItem="62h-3G-VtT" secondAttribute="bottom" id="BRX-yv-MR0"/>
+                            <constraint firstItem="62h-3G-VtT" firstAttribute="leading" secondItem="POF-gG-I6U" secondAttribute="leading" id="joI-aa-7PN"/>
+                            <constraint firstItem="62h-3G-VtT" firstAttribute="top" secondItem="POF-gG-I6U" secondAttribute="top" id="x7i-0u-mkL"/>
+                            <constraint firstItem="POF-gG-I6U" firstAttribute="trailing" secondItem="62h-3G-VtT" secondAttribute="trailing" id="zfG-YX-v47"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="POF-gG-I6U"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="62h-3G-VtT" id="Rwf-vc-ayz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0me-56-XNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844" y="66"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dNc-FE-IT2">

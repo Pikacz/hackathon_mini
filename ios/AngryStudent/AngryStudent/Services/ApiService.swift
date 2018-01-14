@@ -41,7 +41,7 @@ class ApiService {
   
   static let defaultInstance: ApiService = ApiService()
   
-  
+  let indoorMiNI: String = "CScrSxCVhQg"
   
   enum ApiError: Error {
     case missingParameters

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import RxSwift
 
+
+fileprivate let detailsSegue: String = "show_details"
+
+
 class EventViewController: BasicViewController {
     
     // MARK: - Properties
@@ -62,6 +66,17 @@ class EventViewController: BasicViewController {
         super.viewWillDisappear(animated)
         viewModel.stopGettingEvents()
     }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let identifier: String = segue.identifier ?? ""
+    switch identifier {
+    case detailsSegue:
+      let dest: EventDetailsViewController = segue.destination as! EventDetailsViewController
+      dest.event = sender as! Event
+    default:
+      break
+    }
+  }
     
     // MARK: - Binding
     
@@ -104,7 +119,13 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
         headerView.setup(with: viewModel.events.value[section].header)
         return headerView
     }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
+    performSegue(withIdentifier: detailsSegue, sender: viewModel.events.value[indexPath.section].1[indexPath.row])
+  }
+  
+  
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }

@@ -37,7 +37,8 @@ class EventIcon: IndoorwayAnnotationView {
   override var annotation: IndoorwayAnnotation? {
     didSet {
       let annotation: EventAnnotation? = self.annotation as? EventAnnotation
-      imgView.image = annotation?.icon
+      imgView.image = annotation?.icon?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+      
     }
   }
   
@@ -101,7 +102,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   
   var showsUserLocation: Bool = true
   
-  
+  var isSelectagle: Bool = true
   
   
   override func initialize() {
@@ -132,11 +133,74 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   }
   
   
-  func show(event: Event) {
-    guard let roomId: String = event.idnoorRoomId else { return }
-    guard let object: IndoorwayObjectInfo = map.indoorObjects.first(where: { $0.objectId == roomId }) else { return }
-    let annotation = EventAnnotation(object: object, icon: event.icon)
-    map.addAnnotation(annotation)
+  func show(events: [Event]) {
+    
+    
+    
+    var newAnnotations: [EventAnnotation] = []
+    
+    for event in events {
+      guard let roomId: String = event.idnoorRoomId else { return }
+      guard let object: IndoorwayObjectInfo = map.indoorObjects.first(where: { $0.objectId == roomId }) else { return }
+      let annotation = EventAnnotation(object: object, icon: event.icon)
+      newAnnotations.append(annotation)
+    }
+    
+    let oldAnnotations = map.annotations.map { $0 as? EventAnnotation }.filter { $0 != nil }.map { $0! }
+    var oldSet: Set<String> = []
+    
+    for old: EventAnnotation in oldAnnotations {
+      oldSet.insert(old.reuseId)
+    }
+    
+    
+    var toAdd: [EventAnnotation] = []
+    
+    
+    for new in newAnnotations {
+      if !oldSet.contains(new.reuseId) {
+        toAdd.append(new)
+      } else {
+        oldSet.remove(new.reuseId)
+      }
+    }
+    
+    let toRemove: [EventAnnotation] = oldAnnotations.filter { oldSet.contains($0.reuseId) }
+    
+    map.removeAnnotations(toRemove)
+    map.addAnnotations(toAdd)
+
+    
+    
+  }
+  
+  func load(with event: Event, completion: ((Bool) -> ())? = nil) {
+    guard let objId: String = event.idnoorRoomId else {
+      completion?(false)
+      return
+    }
+    
+    let desc: IndoorwayMapDescription = IndoorwayMapDescription(
+      buildingUuid: ApiService.defaultInstance.indoorMiNI,
+      mapUuid: IndoorwayMapDescription.getFloorId(fromObjId: objId)
+    )
+    showsUserLocation = false
+    isSelectagle = false
+    load(with: desc) {
+      (succeed: Bool) in
+      
+      if succeed {
+        if let obj = self.map.indoorObjects.first(where: {
+          (obj: IndoorwayObjectInfo) -> Bool in
+          return obj.objectId == objId
+        }) {
+          self.map.selectObject(withIndoorwayObject: obj)
+        }
+        
+      }
+      
+      completion?(succeed)
+    }
   }
   
   
@@ -171,13 +235,15 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
   
   
   @objc func mapView(_ mapView: IndoorwayMapView, shouldSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) -> Bool {
-    return indoorObjectInfo.isRoom
+    return isSelectagle && indoorObjectInfo.isRoom
   }
   
   
   @objc func mapView(_ mapView: IndoorwayMapView, didSelectIndoorObject indoorObjectInfo: IndoorwayObjectInfo) {
-    delegate?.eventsMapView(didSelect: self, object: indoorObjectInfo)
-    mapView.deselectObject()
+    if isSelectagle {
+      delegate?.eventsMapView(didSelect: self, object: indoorObjectInfo)
+      mapView.deselectObject()
+    }
   }
   
   
