@@ -56,6 +56,15 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
         view.backgroundColor = Color.white
         setupOwnerView()
         setupParticipateView()
+      
+      if let floor: Int = currentMapDesc?.floor {
+        switch floor {
+        case 0: navTitle = R.string.main_map_parter^
+        case 1: navTitle = R.string.main_map_first_floor^
+        case 2: navTitle = R.string.main_map_second_floor^
+        default: break
+        }
+      }
         
     }
     
@@ -65,7 +74,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
         
         
         timer = Timer.scheduledTimer(
-            timeInterval: 3,
+            timeInterval: 0.5,
             target: self,
             selector: #selector(download),
             userInfo: nil,
