@@ -182,7 +182,7 @@ class  OwnerVotesView: BasicView  {
     func setup(model: Event) {
         
         if let iconName = model.iconName {
-            evnetImageView.image = UIImage(named: iconName)
+            evnetImageView.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
         }
         desLabel.text = model.name
         okLabel.text = "\(model.yes!)"

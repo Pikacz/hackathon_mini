@@ -104,6 +104,19 @@ extension ApiService {
                     return
     })
   }
+    
+    func abandon() -> Promise<Void> {
+        let url = "\(baseUrl)/user/abandon?user-id=\(userId)"
+        print("😁 \(url)")
+        return request(url: url,
+                       method: HTTPMethod.get,
+                       parameters: nil,
+                       expectedCodes: [200],
+                       parser: { (json, code) -> Void in
+                        print(json)
+                        return
+        })
+    }
   
   func statrtSpammingLocation() {
     spamLocationListener = LocationsListener()

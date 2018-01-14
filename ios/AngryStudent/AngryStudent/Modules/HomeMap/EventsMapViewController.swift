@@ -223,6 +223,12 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     
     // MARK: - Owner View
     
+    private func bindOwnerView() {
+        ownerViewModel.event.asObservable().subscribe(onNext: { [weak self] (event) in
+            guard let event = event else { return }
+            self?.ownerView.setup(model: event)
+        }).disposed(by: disposeBag)
+    }
     
     // MARK: - UI
     
@@ -247,6 +253,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
         self.view.addSubview(ownerView)
         setupOwnerViewConstrains()
         ownerView.alpha = 0.0
+        bindOwnerView()
     }
     
     private func setupOwnerViewConstrains() {
@@ -265,6 +272,10 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
             guard let event = event else { return }
             self?.participateView.setup(model: event)
         }).disposed(by: disposeBag)
+        
+        participateViewModel.eventVote.asObservable().subscribe(onNext: { [weak self] (vote) in
+            self?.participateView.setup(vote: vote)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - Actions
@@ -281,6 +292,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     
     private func removeParticipateView() {
         // UIView.animate(withDuration: 0.5) { [weak self] in
+        participateViewModel.resetVote()
         self.participateView.alpha = 0
         // }
     }

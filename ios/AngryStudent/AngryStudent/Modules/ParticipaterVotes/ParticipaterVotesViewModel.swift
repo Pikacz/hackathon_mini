@@ -16,12 +16,19 @@ class ParticipaterVotesViewModel {
     
     public let event: Variable<Event?> = Variable(nil)
     
+    public let eventVote: Variable<Bool?> = Variable(nil)
+    
     // MARK: - Initialization
     
     // MARK: - Actions
     
     func vote(postivie: Bool) {
+        eventVote.value = postivie
         _ = ApiService.defaultInstance.sendVote(vote: postivie, eventID: (event.value?.id)!)
+    }
+    
+    func resetVote() {
+        eventVote.value = nil
     }
     
     // MARK: - Helpers

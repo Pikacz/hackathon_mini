@@ -38,12 +38,8 @@ class EventViewController: BasicViewController {
   
   // MARK: - Actions
   
-  private func deleteEvent(with model: Event) {
-    
-  }
-  
-  private func leaveEvent(with model: Event) {
-    
+  fileprivate func deleteEvent() {
+    viewModel.deleteEvent()
   }
   
   // MARK: - Initialization
@@ -134,6 +130,14 @@ extension EventViewController: UITableViewDataSource, UITableViewDelegate {
     let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EventTableViewCell.self), for: indexPath) as! EventTableViewCell
     let cellModel = viewModel.events.value[indexPath.section].1[indexPath.row]
     cell.setup(model: cellModel)
+    cell.delegate = self
     return cell
   }
+}
+
+extension EventViewController: EventTableViewCellDelegate {
+    
+    func eventTableViewCellRemove(cell: EventTableViewCell, model: Event?) {
+        deleteEvent()
+    }
 }
