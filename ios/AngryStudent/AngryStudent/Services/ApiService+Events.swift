@@ -78,7 +78,7 @@ extension ApiService {
     })
   }
   
-  func sendVote(vote: Bool, eventID: String) -> Promise<Void> {
+  func sendVote(vote: Bool, eventID: Int) -> Promise<Void> {
     let voteBool = vote ? 1 : 0
     let url = "\(baseUrl)/user/vote?user-id=\(userId)&value=\(voteBool)&event-id=\(eventID)"
     print("😁 \(url)")

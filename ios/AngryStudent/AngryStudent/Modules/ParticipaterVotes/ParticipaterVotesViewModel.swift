@@ -21,7 +21,7 @@ class ParticipaterVotesViewModel {
     // MARK: - Actions
     
     func vote(postivie: Bool) {
-        _ = ApiService.defaultInstance.sendVote(vote: postivie, eventID: (event.value?.idnoorRoomId)!)
+        _ = ApiService.defaultInstance.sendVote(vote: postivie, eventID: (event.value?.id)!)
     }
     
     // MARK: - Helpers
