@@ -105,7 +105,9 @@ class EventTableViewCell: BasicTableViewCell {
     func setup(model: Event) {
         self.model = model
         if let iconName = model.iconName {
-            let image = UIImage(named: iconName)
+            let image = UIImage(named: iconName)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            print("♞")
+            print(model.iconName)
             iconImageView.image = image
         }
         nameLabel.text = model.name

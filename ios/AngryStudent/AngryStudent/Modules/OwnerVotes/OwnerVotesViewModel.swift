@@ -14,20 +14,20 @@ class OwnerVotesViewModel {
     
     // MARK: - Properties
     
-    public let groupEvent: Variable<GroupEvent?> = Variable(nil)
+    public let groupEvent: Variable<Event?> = Variable(nil)
     
     // MARK: - Initialization
     
     init() {
-        getGroupEvent()
+        getEvents()
     }
     
     // MARK: - Actions
     
     // MARK: - Helpers
     
-    private func getGroupEvent() {
-        groupEvent.value = GroupEvent(name: "KEKekerino", num: 20, iconName: "Book", des: "asdflknasnfsnfnkl")
+    private func getEvents() {
+      
     }
     
 }

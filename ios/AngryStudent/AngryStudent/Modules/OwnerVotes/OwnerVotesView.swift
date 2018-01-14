@@ -178,15 +178,14 @@ class  OwnerVotesView: BasicView  {
     
     // MARK: - Helpers
     
-    func setup(model: GroupEvent) {
+    func setup(model: Event) {
         
         if let iconName = model.iconName {
             evnetImageView.image = UIImage(named: iconName)
         }
         desLabel.text = model.name
-        nrLabel.text = "\(model.viewersNum!)"
-        okLabel.text = "\(model.votes!.ok!)"
-        badLabel.text = "\(model.votes!.bad.count)"
+        okLabel.text = "\(model.yes)"
+        badLabel.text = "\(model.no)"
     }
     
     // MARK: - Setup
