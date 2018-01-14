@@ -1,13 +1,6 @@
-//
-//  FriendsViewModel.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 14.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import RxSwift
+
 
 class FriendsViewModel {
     
@@ -33,5 +26,4 @@ class FriendsViewModel {
             Friend(name: "Ganna Aocka", faceImage: #imageLiteral(resourceName: "ana"), event: "Wychowanie do życia w rodzinie"),
         ]
     }
-    
 }

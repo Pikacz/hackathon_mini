@@ -13,7 +13,6 @@ extension ApiService {
       expectedCodes: [200],
       parser: {
         (json: String, code: Int) -> Void in
-        print(json)
         return
     }
     )

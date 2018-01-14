@@ -2,6 +2,7 @@ import Foundation
 import ObjectMapper
 import UIKit
 
+
 class EventsData: Mappable {
     public private(set) var events: [Event]?
     
@@ -11,6 +12,7 @@ class EventsData: Mappable {
         events  <- map["events"]
     }
 }
+
 
 class Event: Mappable {
     
@@ -23,19 +25,19 @@ class Event: Mappable {
     public private(set) var yes: Int?
     public private(set) var no: Int?
     public private(set) var guests: [String]?
-  
-  var icon: UIImage? {
-    guard let iconName: String = iconName else { return nil }
-    return UIImage(named: iconName)
-  }
-  
-  var imOwner: Bool {
-    return ownerId == ApiService.defaultInstance.userId
-  }
-  
-  var imParticipate: Bool {
-    return guests?.first { $0 == ApiService.defaultInstance.userId } != nil
-  }
+    
+    var icon: UIImage? {
+        guard let iconName: String = iconName else { return nil }
+        return UIImage(named: iconName)
+    }
+    
+    var imOwner: Bool {
+        return ownerId == ApiService.defaultInstance.userId
+    }
+    
+    var imParticipate: Bool {
+        return guests?.first { $0 == ApiService.defaultInstance.userId } != nil
+    }
     
     public init(name: String, num: Int, iconName: String, des: String?) {
         self.name = name
@@ -54,9 +56,7 @@ class Event: Mappable {
         iconName           <- map["icon"]
         yes                <- map["yes"]
         no                 <- map["no"]
-      guests               <- map["guests-id"]
-      
-      
-      
+        guests             <- map["guests-id"]
     }
 }
+

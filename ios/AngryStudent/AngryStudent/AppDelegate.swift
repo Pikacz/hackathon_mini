@@ -40,10 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setUpStyle() {
-      UINavigationBar.appearance().titleTextAttributes = [
-        NSAttributedStringKey.foregroundColor: Color.blueDark
-      ]
-      UINavigationBar.appearance().tintColor = Color.blue
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: Color.blueDark
+        ]
+        UINavigationBar.appearance().tintColor = Color.blue
     }
     
     private func setupIQKeyboardManger() {

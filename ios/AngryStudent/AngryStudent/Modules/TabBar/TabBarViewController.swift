@@ -1,13 +1,6 @@
-//
-//  TabBarViewController.swift
-//  AngryStudent
-//
-//  Created by Mateusz Orzoł on 13.01.2018.
-//  Copyright © 2018 Paweł Czerwiński. All rights reserved.
-//
-
 import Foundation
 import UIKit
+
 
 class TabBarViewController: UITabBarController {
     
@@ -36,8 +29,6 @@ class TabBarViewController: UITabBarController {
         tabBar.shadowImage = nil
         tabBar.backgroundColor = Color.white
         tabBar.tintColor = Color.blueDark
-        //tabBar.backgroundImage = UIImage()
-        //tabBar.layer.backgroundColor = Color.clear.cgColor
         setupTabBarControllers()
     }
     

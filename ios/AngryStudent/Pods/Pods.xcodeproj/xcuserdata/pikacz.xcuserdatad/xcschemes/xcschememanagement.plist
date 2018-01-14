@@ -77,12 +77,12 @@
 		<key>RxCocoa.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>12</integer>
 		</dict>
 		<key>RxSwift.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>13</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>

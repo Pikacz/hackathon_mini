@@ -52,44 +52,44 @@ class CreateEventViewController: BasicViewController {
             createBtn.titleLabel?.font = Font.subtitle
             createBtn.backgroundColor = Color.blue
             createBtn.layer.cornerRadius = CGFloat(26.0)
-          createBtn.addTarget(self, action: #selector(submmit), for: UIControlEvents.touchUpInside)
+            createBtn.addTarget(self, action: #selector(submmit), for: UIControlEvents.touchUpInside)
         }
     }
     
     
-  var room: IndoorwayObjectInfo!
+    var room: IndoorwayObjectInfo!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      print(R.string.create_event_title^)
+        
+        print(R.string.create_event_title^)
         navTitle = R.string.create_event_title[room.roomName!]
     }
-  
-  
-  // MARK: private
-  @objc private func submmit() {
-    let name: String = nameField.text!
-    let description: String = descriptionTextView.text!
-    let icon: String = iconSelectView.selectedIcon
-    let roomId: String = room.objectId
     
     
-    isLoading = true
-    ApiService.defaultInstance.createEvent(
-      name: name,
-      description: description,
-      icon: icon,
-      roomId: roomId
-    ).then {
-      () -> Void in
-      self.navigationController?.popViewController(animated: true)
-    }.always {
-      self.isLoading = true
+    // MARK: private
+    @objc private func submmit() {
+        let name: String = nameField.text!
+        let description: String = descriptionTextView.text!
+        let icon: String = iconSelectView.selectedIcon
+        let roomId: String = room.objectId
+        
+        
+        isLoading = true
+        ApiService.defaultInstance.createEvent(
+            name: name,
+            description: description,
+            icon: icon,
+            roomId: roomId
+            ).then {
+                () -> Void in
+                self.navigationController?.popViewController(animated: true)
+            }.always {
+                self.isLoading = true
+        }
     }
-  }
 }
 
 
@@ -99,11 +99,11 @@ fileprivate let cellId: String = "a"
 
 
 fileprivate let imageNames: [String] = [
-  "Book",
-  "balloon",
-  "horse",
-  "education",
-  "Book",
+    "Book",
+    "balloon",
+    "horse",
+    "education",
+    "Book",
 ]
 
 class SelectIconView: BasicView, UICollectionViewDataSource {
@@ -112,16 +112,16 @@ class SelectIconView: BasicView, UICollectionViewDataSource {
     
     private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
-  
-  
-  
-  var selectedIcon: String {
-    guard let index: Int = collectionView.indexPathsForSelectedItems?.first?.row else {
-      return ""
-    }
-    return imageNames[index]
     
-  }
+    
+    
+    var selectedIcon: String {
+        guard let index: Int = collectionView.indexPathsForSelectedItems?.first?.row else {
+            return ""
+        }
+        return imageNames[index]
+        
+    }
     
     override func initialize() {
         super.initialize()
@@ -166,7 +166,7 @@ class SelectIconView: BasicView, UICollectionViewDataSource {
     // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: SelectIconCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SelectIconCell
-      
+        
         cell.display(image: UIImage(named: imageNames[indexPath.row]))
         return cell
     }
