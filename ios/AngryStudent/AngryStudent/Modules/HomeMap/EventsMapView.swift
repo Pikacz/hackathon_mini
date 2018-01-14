@@ -139,7 +139,7 @@ class EventsMapView: BasicView, IndoorwayMapViewDelegate {
     for event in events {
       guard let roomId: String = event.idnoorRoomId else { return }
       guard let object: IndoorwayObjectInfo = map.indoorObjects.first(where: { $0.objectId == roomId }) else { return }
-      if event.imOwner {
+      if event.imParticipate {
         map.navigate(to: object.coordinate)
       }
       let annotation = EventAnnotation(object: object, icon: event.icon)
