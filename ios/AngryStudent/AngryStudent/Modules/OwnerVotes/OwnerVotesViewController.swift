@@ -48,7 +48,7 @@ class OwnerVotesViewController: BasicViewController {
     // MARK: - Binding
     
     private func bindView() {
-        viewModel.groupEvent.asObservable().subscribe(onNext: { [weak self] (event) in
+        viewModel.event.asObservable().subscribe(onNext: { [weak self] (event) in
             guard let event = event else { return }
             self?.ownerView.setup(model: event)
             self?.navigationController?.title = event.name

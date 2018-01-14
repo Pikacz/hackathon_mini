@@ -49,7 +49,7 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
     navTitle = R.string.main_map_title["MiNI - 2nd floor"]
     view.backgroundColor = Color.white
     setupParticipateView()
-    addParticipateView()
+    setupOwnerView()
   }
   
   
@@ -152,14 +152,12 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
 //        addParticipateView()
 //    }
     
-    
- 
     // MARK: - Owner View
     
     // MARK: - Binding
     
     private func bindOwnerView() {
-        ownerViewModel.groupEvent.asObservable().subscribe(onNext: { [weak self] (event) in
+        ownerViewModel.event.asObservable().subscribe(onNext: { [weak self] (event) in
             guard let event = event else { return }
             self?.ownerView.setup(model: event)
         }).disposed(by: disposeBag)
@@ -173,13 +171,17 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
        // }
     }
     
-    private func addOwnerView(for id: String) {
-        
+    private func addOwnerView(for event: Event) {
+        ownerViewModel.setupEvent(for: event)
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.ownerView.alpha = 1
         }
     }
     
+    private func updateOwnerView(with event: Event) {
+        ownerViewModel.updateEvent(with: event)
+    }
+        
     private func setupOwnerView() {
         self.view.addSubview(ownerView)
         setupOwnerViewConstrains()
@@ -223,7 +225,8 @@ class EventsMapViewController: BasicViewController, IndoorwayMapListener, Indoor
        // }
     }
     
-    private func addParticipateView() {
+    private func addParticipateView(for event: Event) {
+        participateView.setup(model: event)
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.participateView.alpha = 1
         }

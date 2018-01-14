@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class  OwnerVotesView: BasicView  {
     
@@ -177,7 +178,7 @@ class  OwnerVotesView: BasicView  {
     // MARK: - Actions
     
     // MARK: - Helpers
-    
+        
     func setup(model: Event) {
         
         if let iconName = model.iconName {
